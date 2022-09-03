@@ -1,0 +1,106 @@
+
+Redux - Predictable state for JS apps
+Can be used with React, Angular, Vue etc
+Holds the state of our application
+
+State transitions are explicit and possible to keep track of them
+State data is held in a Redux state container, helps in state 
+management
+
+Commands to execute - 
+1. npm init --yes
+2. npm install redux
+
+Three core concepts  - Store, Action, Reducer
+Store - Holds the state of the application
+Action - describes the changes in the state of the application
+Reducer - Ties the store and actions together, actually carries
+out the state transition depending on action 
+
+Three Principles of Redux - 
+1. First principle - The state of whole application is stored in 
+an object tree within a single store 
+It means that our application state is maintained in a single
+object managed by Redux 
+
+2. The only way to change the state is to emit an action, an 
+object describing what happened
+It means that to update the state of our app, we need to let Redux 
+know about it with an action. We are not directly allowed to 
+update the state object 
+
+3. To specify how the state tree is transformed by actions,
+write pure reducers
+Reducers fxn - (prevState, action) => newState
+Reducer functions are pure functions that take previous state 
+and action as parameters and return the new updated state 
+
+JS app, Redux store, Action, Reducer fxn 
+JS app is our app and Redux store is where our state data is stored
+Redux store is subscribed to JS app
+JS app can't directly change the state, it can only dispatch an 
+action 
+Based on this action, reducer function will take prevState and action 
+and return a new state
+This is received by Redux store, this redux store then makes
+the changes in its data and the changes are then made in JS app 
+
+Action - carries info from app to reducer fxn to store 
+It's a plain JS object, has a type property that indicates the type 
+of action being performed
+"Type" property is typically defined as string constants
+
+Reducers - Specifies how the app's state changes in response to actions
+sent to the store 
+Basically a function that accepts state and action as arguments
+and return the next state of the application 
+
+Redux Store - One store for the entire application 
+Responsibilities - 1. Holds the application state 
+2. Allows access to state vis getState()
+3. Allows state to be updated via dispatch(action)
+4. Registers listeners via subscribe (listeners)
+5. Handles unregistering of listeners via the function returned
+by subscribe (listener)
+
+
+Middleware - Extend redux with custom functionality
+Provides third-party extension point between an action and the moment
+it reaches the reducer 
+We will be using redux-logger
+It logs all the information related to redux in application
+
+Async actions - 
+Normally dispatch function runs as soon as state was updated 
+But it is not suitable for async tasks
+
+Generally in async tasks, 
+State has 3 parts - 
+1. loading - boolean telling whether the state is completely
+loaded or not 
+2. data - the data received 
+3. error - display the error to user
+
+Actions - 
+1. Fetch (FETCH_USERS_REQUEST) - fetch ist of users
+2. If fetch was successful - (FETCH_USERS_SUCCESS) 
+3. If fetch was failed - (FETCH_USERS_FAILURE)
+
+Reducers - 
+1. case: FETCH_USRES_REQUEST
+loding: true
+
+2. FETCH_USERS_SUCCESS 
+loading: false
+users: data( from API)
+
+2. FETCH_USERS_FAILURE 
+loading: false
+error: error( from API)
+
+
+Async action creators - 
+Two packages needed - axios (requests to API end point)
+redux-thunk - to define action creators
+
+
